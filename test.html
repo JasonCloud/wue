@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="./src/js/observer.js"></script>
+	<script type="text/javascript" src="./src/js/watcher.js"></script>
+	<script type="text/javascript" src="./src/js/compile.js"></script>
+	<script type="text/javascript" src="./src/js/wue.js"></script>
+	<style type="text/css">
+	*{
+		padding: 0;
+		margin: 0;
+	}
+	#app{
+		padding: 10px 0 0 8px;
+	}
+		.red{
+			color: red;
+		}
+		.bolder{
+			border:1px solid green;
+		}
+		.blue{
+			margin: 10px 0;
+			width:200px;
+			height: 200px;
+			background: #58a;
+		}
+		.btn{
+			color:#fff;
+			padding: 12px 16px;
+			border: none;
+			outline: none;
+			border-radius: 4px;
+			background: #58a;
+			font-size: 16px;
+		}
+	</style>
+</head>
+<body>
+	<div id="app" >
+      <button @click="show" :class="[btn]"> hideOrShow </button>
+      <div class="blue" v-show="show" :data-index="index"></div>
+      <p>动态绑定：{{mesg}}</p>
+      <input type="text" v-model="mesg" :placeholder="info" >
+      <p v-text="text"></p>
+      <p v-html="template"></p>
+      <button @click="fn1" class="btn">click alert(1)</button>
+	</div>
+</body>
+<script>
+    var vm = new Wue({
+    	el:'#app',
+    	data:{
+    		red:"red",
+    		btn:'btn',
+    		index:2,
+    		template:'<span><strong>v-html</strong></span>',
+    		text:'v-text  lalalala..',
+    		mesg:'hello world',
+    		info:'please enter some content',
+    		show:true
+    	},
+    	methods:{
+    		show :function(){
+    			this.show = !this.show;
+    		},
+    		fn1: function(){
+    			alert(1)
+    		}
+    	}
+    })
+</script>
+</html>
